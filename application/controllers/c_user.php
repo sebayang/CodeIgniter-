@@ -12,9 +12,9 @@ class c_user extends CI_Controller {
 
     function index() {
 		    if($this->session->has_userdata('username')){
-				  if($this->session->userdata('type')=='1'){
+				  if($this->session->userdata('type')==1){
   					redirect('c_user/homeAdmin');
-  				}elseif($this->session->userdata('type')=='2'){
+  				}elseif($this->session->userdata('type')==2){
   					redirect('c_user/homeUser');
   				}
   		}else{
@@ -96,10 +96,9 @@ class c_user extends CI_Controller {
 
 	}
 	public function homeUser(){
-	$this->load->view('template/header'); // default template
-	//$this->load->view('direktur/dashboard',$data); // dashboard vendornya
-	$this->load->view('user/home_dashboard' , $data);
-	$this->load->view('template/footer');
+		$this->load->view('template/header'); // default template
+		$this->load->view('user/home_dashboard' , $data);
+		$this->load->view('template/footer');
 	}
 
 

@@ -7,30 +7,33 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
+<center>
+    <form action="<?php echo base_url('c_login/validate');?>" method="post">
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control has-icons-right">
+          <input class="input" type="text" placeholder="username" required>
+          <span class="icon is-small is-right">
+            <i class="fa fa-user"></i>
+          </span>
+        </div>
+      </div>
 
-    <form action="../../index2.html" method="post">
-      <div class="form-group has-feedback">
-        <input type="username" class="form-control" placeholder="Username">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
-          </div>
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-right">
+          <input class="input" type="password" placeholder="password" required>
+          <span class="icon is-small is-right">
+            <i class="fa fa-key"></i>
+          </span>
         </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-        </div>
-        <!-- /.col -->
       </div>
+      <br>
+      <div class="has-text-centered">
+        <!-- <a class="button is-primary is-outlined">Login</a> -->
+        <button type="submit" class="button is-primary is-outlined">Login</button>
+      </div>
+      <hr>
     </form>
     <a href="#">I forgot my password</a><br>
     <a href="<?php echo base_url('c_user/registrasi_user');?>" class="text-center">Register a new membership</a>
@@ -38,6 +41,7 @@
   </div>
   <!-- /.login-box-body -->
 </div>
+</center>
 <!-- /.login-box -->
 
 <!-- jQuery 3 -->
