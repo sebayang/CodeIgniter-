@@ -18,6 +18,7 @@ class c_login extends CI_Controller{
 					redirect('c_user/homeUser');
 				}
 		}else{
+			$this->load->view('template/header');
 			$this->load->view('Login/LoginUser');
 		}
 
@@ -30,8 +31,7 @@ class c_login extends CI_Controller{
 
 		$cekUser = $this->m_user->cek($username, md5($password));
 
-		if($cekUser->num_rows() == 1)
-		{
+		if($cekUser->num_rows() == 1){
 			foreach($cekUser->result() as $data){
 				$sess_data['username'] = $data->username;
 				$sess_data['password'] = $data->password;
@@ -40,25 +40,21 @@ class c_login extends CI_Controller{
 				$sess_data['type'] = $data->type;
 				$this->session->set_userdata($sess_data);
 			}
-
-
-			if($this->session->userdata('type') == 1)
-			{
+			if($this->session->userdata('type') == 1){
 				redirect('c_user/homeAdmin');
-			}else if ($this->session->userdata('type') == 2)
-			{
+			}
+			else if ($this->session->userdata('type') == 2){
 				redirect('c_user/homeUser');
 			}
-		} else {
-			print_r($password);
-			echo '<br>';
-			print_r($username);
+		}
+		else {
 
-			 /*?>
+
+			 ?>
                      <script type=text/javascript>alert("Maaf, kombinasi username dengan password salah. ");</script>
 
-        <?php*/
-			//$this->index();
+        <?php
+			$this->index();
 
 		}
 	}
