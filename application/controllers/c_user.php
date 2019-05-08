@@ -97,7 +97,7 @@ class c_user extends CI_Controller {
 	}
 	public function homeUser(){
 		$this->load->view('template/header'); // default template
-		$this->load->view('user/home_dashboard' , $data);
+		$this->load->view('user/home_dashboard');
 		$this->load->view('template/footer');
 	}
 

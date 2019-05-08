@@ -7,7 +7,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>J</b>S</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Jadwal</b>Sidang</span>
+      <span class="logo-lg"><b>Crowdsourcing</b>.com</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -81,15 +81,15 @@
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Jadwal Sidang</span>
+            <i class="fa fa-dashboard"></i> <span>MENU</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="<?php echo base_url('c_jadwal_sidang');?>"><i class="fa fa-circle-o"></i> List Jadwal Sidang</a></li>
-            <li><a href="<?php echo base_url('c_list_dosen');?>"><i class="fa fa-circle-o"></i>  List Dosen Penguji </a></li>
-            <li><a href="<?php echo base_url('c_list_mahasiswa');?>"><i class="fa fa-circle-o"></i> List Mahasiswa </a></li>
+            <li class="active"><a href="<?php echo base_url('c_jadwal_sidang');?>"><i class="fa fa-circle-o"></i> Seluruh Post</a></li>
+            <li><a href="<?php echo base_url('c_list_dosen');?>"><i class="fa fa-circle-o"></i>  Post Kontributor </a></li>
+            <li><a href="<?php echo base_url('c_list_mahasiswa');?>"><i class="fa fa-circle-o"></i> Post Terakhir Dibuka </a></li>
           </ul>
         </li>
       </ul>
@@ -124,7 +124,7 @@
                 $total_jadwal = count((array)$jadwal);
               echo $total_jadwal?></h3>
 
-              <p>Total Jadwal Sidang</p>
+              <p>POST</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -140,7 +140,7 @@
                 $total_mhs = count((array)$mahasiswa);
               echo $total_mhs ?></h3>
 
-              <p>Total Mahasiswa</p>
+              <p>POST</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -156,7 +156,7 @@
                 $total_dosen = count((array)$dosen);
               echo $total_dosen?></h3>
 
-              <p>Total Dosen Penguji</p>
+              <p>POST</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>

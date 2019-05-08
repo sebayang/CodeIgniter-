@@ -2,7 +2,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2018 <a href="noczero.github.io">Zero Inside</a>.</strong> All rights
+    <strong>Copyright &copy; 2018 <a href="noczero.github.io">Crowdsourcing.com</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -13,7 +13,7 @@
 <!-- jQuery 3 -->
 <!-- <script src="../bower_components/jquery/dist/jquery.min.js"></script> -->
 <script src="<?php echo base_url('assets/Admin/bower_components/jquery/dist/jquery.min.js');?>"></script>
-<!-- Bootstrap 3.3.7 --><!-- 
+<!-- Bootstrap 3.3.7 --><!--
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
 <script src="<?php echo base_url('assets/Admin/bower_components/bootstrap/dist/js/bootstrap.min.js');?>"></script>
 <script src="<?php echo base_url('assets/Admin/bower_components/bootstrap/js/collapse.js');?>"></script>
@@ -58,7 +58,7 @@
       $('#table_mahasiswa').DataTable()
       $('#table_dosen').DataTable()
       $('#table_jadwal_sidang').DataTable()
-     
+
       $('#datetimepicker').datetimepicker({
         //language:  'fr',
         weekStart: 1,
@@ -100,7 +100,7 @@
                 });
 
 
-       
+
 
 
     });

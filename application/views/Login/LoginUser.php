@@ -12,7 +12,7 @@
       <div class="field">
         <label class="label">Username</label>
         <div class="control has-icons-right">
-          <input class="input" type="text" placeholder="username" required>
+          <input class="input" type="text" placeholder="username" name="username" required>
           <span class="icon is-small is-right">
             <i class="fa fa-user"></i>
           </span>
@@ -22,7 +22,7 @@
       <div class="field">
         <label class="label">Password</label>
         <div class="control has-icons-right">
-          <input class="input" type="password" placeholder="password" required>
+          <input class="input" type="password" placeholder="password" name="password" required>
           <span class="icon is-small is-right">
             <i class="fa fa-key"></i>
           </span>
