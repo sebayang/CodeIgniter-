@@ -100,6 +100,10 @@ class c_user extends CI_Controller {
 		$this->load->view('user/home_dashboard');
 		$this->load->view('template/footer');
 	}
+	public function keluar(){
+		$this->session->sess_destroy();
+		redirect('c_user');
+	}
 
 
 }
