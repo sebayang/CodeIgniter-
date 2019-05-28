@@ -88,8 +88,8 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="<?php echo base_url('c_jadwal_sidang');?>"><i class="fa fa-circle-o"></i> Seluruh Post</a></li>
-            <li><a href="<?php echo base_url('c_list_dosen');?>"><i class="fa fa-circle-o"></i>  Post Kontributor </a></li>
-            <li><a href="<?php echo base_url('c_list_mahasiswa');?>"><i class="fa fa-circle-o"></i> Post Terakhir Dibuka </a></li>
+            <li><a href="<?php echo base_url('c_list_dosen');?>"><i class="fa fa-circle-o"></i>  Hasil Penilaian </a></li>
+            <li><a href="<?php echo base_url('c_ungah_ulasan');?>"><i class="fa fa-circle-o"></i> Ungah Ulasan </a></li>
           </ul>
         </li>
       </ul>
