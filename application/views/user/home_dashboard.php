@@ -30,7 +30,7 @@
 
                 <p>
                   <?php
-                  $text = $this->session->userdata('username')." - ".$this->session->userdata('hak_akses');
+                  $text = $this->session->userdata('username')." - ".$this->session->userdata('type');
                   echo $text;
                   ?>
                 </p>
@@ -87,7 +87,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="<?php echo base_url('c_jadwal_sidang');?>"><i class="fa fa-circle-o"></i> Seluruh Post</a></li>
+            <li class="active"><a href="<?php echo base_url('c_user');?>"><i class="fa fa-circle-o"></i> Post Anda</a></li>
             <li><a href="<?php echo base_url('c_list_dosen');?>"><i class="fa fa-circle-o"></i>  Hasil Penilaian </a></li>
             <li><a href="<?php echo base_url('c_ungah_ulasan');?>"><i class="fa fa-circle-o"></i> Ungah Ulasan </a></li>
           </ul>
@@ -102,72 +102,202 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+      List Jadwal Sidang
+      <small>Dashboard</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo base_url('c_user');?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Jadwal Sidang</li>
       </ol>
     </section>
-
     <!-- Main content -->
     <section class="content">
       <!-- Main row -->
       <div class="row">
+        <div class="box">
+          <div class="box-body">
+            <table id="table_dosen" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>NO</th>
+                  <th>ID Jawaban</th>
+                  <th>Nama Website</th>
+                  <th>Nilai</th>
+                </tr>
+              </thead>
 
-         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3><?php
-                $total_jadwal = count((array)$jadwal);
-              echo $total_jadwal?></h3>
+              <tbody>
+                <?php
+                $no = 1;
+                foreach ($jadwal as $jdwl):
+                ?>
+                <tr>
+                  <td><?php echo $no;?></td>
+                  <td><?php echo $jdwl->nim;?></td>
+                  <td><?php echo $jdwl->nama;?></td>
+                  <td><?php echo $jdwl->penguji1;?></td>
+                  <td><?php echo $jdwl->penguji2;?></td>
+                  <td><?php echo date("h:i a, d M Y",strtotime($jdwl->waktu));?></td>
+                  <td>
+                    <a href="#view<?php echo $jdwl->id_sidang;?>" data-toggle="modal"> <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i>Edit<span class="" aria-hidden="true"></span></button></a>
+                    <a href="<?php echo base_url('c_jadwal_sidang/hapus_jdwl/'.$jdwl->id_sidang);?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data?')"><i class="fa fa-trash"></i></a>
+                    <!-- Modal Edit -->
+                    <div  role="dialog" tabindex="" id="view<?php echo $jdwl->id_sidang; ?>" class="modal fade">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Edit dosen</h4>
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="form-group">
+                              <form action="<?php echo base_url('c_jadwal_sidang/edit_jdwl/'.$jdwl->id_sidang); ?>" method="post">
+                                <table class="table-form">
+                                  <tr>
+                                    <td width="50%">NIM Mahasiwa</td><td><b>
+                                    <div class="row-fluid">
+                                      <input type="text"  name="nim"  class="form-control"  value="<?php echo $jdwl->nim;?>" readonly></b>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td width="50%">Penguji Pertama</td><td><b>
+                                  <div class="row-fluid">
+                                    <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="penguji1" required>
+                                      <option data-subtext="" value="<?php echo $jdwl->id_penguji_1?>"><?php echo $jdwl->penguji1; ?></option>
+                                      <?php
+                                      foreach ($dosen as $dsn):
+                                      ?>
+                                      <option data-subtext="<?php echo $dsn->kode_dosen?>" value="<?php echo $dsn->id_dosen?>"><?php echo $dsn->nama_dosen?></option>
+                                      <?php  endforeach; ?>
+                                    </select>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td width="50%">Penguji Kedua</td><td><b>
+                                <div class="row-fluid">
+                                  <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="penguji2" required>
+                                    <option data-subtext="" value="<?php echo $jdwl->id_penguji_2?>"><?php echo $jdwl->penguji2; ?></option>
+                                    <?php
+                                    foreach ($dosen as $dsn):
+                                    ?>
+                                    <option data-subtext="<?php echo $dsn->kode_dosen?>" value="<?php echo $dsn->id_dosen?>"><?php echo $dsn->nama_dosen?></option>
+                                    <?php  endforeach; ?>
+                                  </select>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td width="50%">Input Jadwal</td><td><b>
+                              <div class="row-fluid">
+                                <input type="text" id="datetimepicker_jadwal" data-date-format="yyyy-mm-dd hh:ii" name="waktu" value="<?php echo $jdwl->waktu;?>"required>
+                              </div>
+                            </td>
+                          </tr>
 
-              <p>POST</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
-            </div>
-            <a href="<?php echo base_url('c_jadwal_sidang')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><?php
-                $total_mhs = count((array)$mahasiswa);
-              echo $total_mhs ?></h3>
+                        </table>
+                        <br>
+                        <button type="submit"  class="btn btn-success" value="submit"><i class="fa fa-check icon-white"></i> Simpan </button>
+                      </form>
+                    </div>
+                  </div>
 
-              <p>POST</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
-            </div>
-            <a href="<?php echo base_url('c_list_mahasiswa')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3><?php
-                $total_dosen = count((array)$dosen);
-              echo $total_dosen?></h3>
 
-              <p>POST</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
-            </div>
-            <a href="<?php echo base_url('c_list_dosen')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Back</button>
+                  </div>
 
-      </div>
-      <!-- /.row (main row) -->
-
-    </section>
-    <!-- /.content -->
+                </div>
+              </div>
+            </div>
+            <!-- END Edit  -->
+          </td>
+        </tr>
+        <?php $no++; endforeach; ?>
+      </tbody>
+    </table>
   </div>
+</div>
+</div>
+<!-- /.row (main row) -->
+</section>
+<!-- /.content -->
+</div>
+
+<!-- Modal Edit -->
+<div  role="dialog" tabindex="" id="tambahJdwl" class="modal fade">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">Tambah Jadwal Sidang</h4>
+<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<form action="<?php echo base_url('c_jadwal_sidang/insert_jdwl'); ?>" method="post">
+
+  <table class="table-form">
+    <tr>
+      <td width="50%">Mahasiwa </td><td><b>
+      <div class="row-fluid">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="nim" required>
+          <option data-subtext="">Pilih Mahasiswa</option>
+          <?php
+          foreach ($mahasiswa as $mhs):
+          if ($mhs->id_sidang == '') {
+          ?>
+          <option data-subtext="<?php echo $mhs->nim?>" value="<?php echo $mhs->nim?>"><?php echo $mhs->nama?></option>
+          <?php } endforeach; ?>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">Penguji Pertama</td><td><b>
+    <div class="row-fluid">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="penguji1" required>
+        <option data-subtext="">Pilih Penguji</option>
+        <?php
+        foreach ($dosen as $dsn):
+        ?>
+        <option data-subtext="<?php echo $dsn->kode_dosen?>" value="<?php echo $dsn->id_dosen?>"><?php echo $dsn->nama_dosen?></option>
+        <?php  endforeach; ?>
+      </select>
+    </div>
+  </td>
+</tr>
+<tr>
+  <td width="50%">Penguji Kedua</td><td><b>
+  <div class="row-fluid">
+    <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="penguji2" required>
+      <option data-subtext="">Pilih Penguji</option>
+      <?php
+      foreach ($dosen as $dsn):
+      ?>
+      <option data-subtext="<?php echo $dsn->kode_dosen?>" value="<?php echo $dsn->id_dosen?>"><?php echo $dsn->nama_dosen?></option>
+      <?php  endforeach; ?>
+    </select>
+  </div>
+</td>
+</tr>
+<tr>
+<td width="50%">Input Jadwal</td><td><b>
+<div class="row-fluid">
+  <input type="text" id="datetimepicker_jadwal_tambah" data-date-format="yyyy-mm-dd hh:ii" name="waktu" required>
+</div>
+</td>
+</tr>
+
+</table>
+<br>
+<button type="submit"  class="btn btn-success" value="submit"><i class="fa fa-check icon-white"></i> Simpan </button>
+</form>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-warning" data-dismiss="modal"> Back </button>
+</div>
+</div>
+</div>
+</div>

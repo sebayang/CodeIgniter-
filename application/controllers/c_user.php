@@ -5,9 +5,6 @@ class c_user extends CI_Controller {
 	public function __construct() {
         parent::__construct();
         $this->load->model('m_user');
-        // $this->load->model('m_jadwal_sidang');
-        // $this->load->model('m_dosen');
-        // $this->load->model('m_mahasiswa');
     }
 
     function index() {

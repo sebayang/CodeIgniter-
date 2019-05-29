@@ -15,7 +15,7 @@ class c_ungah_ulasan extends CI_Controller
 	function index() {
 		if($this->session->has_userdata('username')){
 				if($this->session->userdata('type')==2){
-					$this->formUlasan();
+					redirect('c_ungah_ulasan/formUlasan');
 				}elseif($this->session->userdata('type')==1){
 					redirect('c_user');
 				}
@@ -33,6 +33,7 @@ class c_ungah_ulasan extends CI_Controller
 
 	function insert_jawaban(){
 		$nama_website = $this->input->post('nama_website');
+		$username = $this->session->userdata('username');
 		$jawaban1 = $this->input->post('jawaban1');
 		$jawaban2 = $this->input->post('jawaban2');
 		$jawaban3 = $this->input->post('jawaban3');
@@ -47,6 +48,7 @@ class c_ungah_ulasan extends CI_Controller
 
 		$data = array(
 			'nama_website' => $nama_website,
+			'username' => $username,
 			'jawaban1'=> $jawaban1,
 			'jawaban2'=> $jawaban2,
 			'jawaban3'=> $jawaban3,
