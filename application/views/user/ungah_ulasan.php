@@ -87,9 +87,9 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li ><a href="<?php echo base_url('c_user');?>"><i class="fa fa-circle-o"></i> Post Anda</a></li>
-              <li><a href="<?php echo base_url('c_list_dosen');?>"><i class="fa fa-circle-o"></i>  Hasil Penilaian </a></li>
-              <li class="active"><a href="<?php echo base_url('c_list_mahasiswa');?>"><i class="fa fa-circle-o"></i>  Ungah Ulasan   </a></li>
+              <li ><a href="<?php echo base_url('c_post_anda');?>"><i class="fa fa-circle-o"></i> Post Anda</a></li>
+              <li><a href="<?php echo base_url('c_user');?>"><i class="fa fa-circle-o"></i>  Hasil Penilaian </a></li>
+              <li class="active"><a href="<?php echo base_url('c_ungah_ulasan');?>"><i class="fa fa-circle-o"></i>  Ungah Ulasan   </a></li>
             </ul>
           </li>
         </ul>
@@ -120,48 +120,48 @@
         <input type="text" class="form-control" id="nama_website" placeholder="contoh : www.liputan6.com" name="nama_website">
     </div>
     <div class="form-group">
-      <label  for="pwd">Pertanyaan 1:</label>
+      <label  for="pwd">Bagaimana pendapat anda tentang design dari news site tersebut?</label>
         <input type="text" class="form-control" id="jawaban1" placeholder="Masukan Jawaban Anda" name="jawaban1">
     </div>
     <div class="form-group">
-      <label  for="pwd">Pertanyaan 2:</label>
+      <label  for="pwd">Apakah anda mengenal newsite tersebut dan bagaimana menurut anda reputasinya?</label>
         <input type="text" class="form-control" id="jawaban2" placeholder="Masukan Jawaban Anda" name="jawaban2">
     </div>
     <div class="form-group">
-      <label  for="pwd">Pertanyaan 3:</label>
+      <label  for="pwd">Apakah website tersebut mengandung iklan yang menggangu?</label>
         <input type="text" class="form-control" id="jawaban3" placeholder="Masukan Jawaban Anda" name="jawaban3">
     </div>
     <div class="form-group">
-      <label  for="pwd">Pertanyaan 4:</label>
+      <label  for="pwd">Bagaimana struktur penulisan pada artikel-artikel news site tersebut? Bagaimana organisasi dan struktur informasi pada news site tersebut?</label>
         <input type="text" class="form-control" id="jawaban4" placeholder="Masukan Jawaban Anda" name="jawaban4">
     </div>
     <div class="form-group">
-      <label  for="pwd">Pertanyaan 5:</label>
+      <label  for="pwd">Apakah artikel-artikel pada news site tersebut fokus menyampaikan informasi?</label>
         <input type="text" class="form-control" id="jawaban5" placeholder="Masukan Jawaban Anda" name="jawaban5">
     </div>
     <div class="form-group">
-      <label  for="pwd">Pertanyaan 6:</label>
+      <label  for="pwd">Apakah artikel-artikel pada news site tersebut bermanfaat?</label>
         <input type="text" class="form-control" id="jawaban6" placeholder="Masukan Jawaban Anda" name="jawaban6">
     </div>
     <div class="form-group">
-      <label  for="pwd">Pertanyaan 7:</label>
+      <label  for="pwd">Apakah informasi yang disajikan menyimpang seperti click bait, tidak bersifat netral, dll?</label>
         <input type="text" class="form-control" id="jawaban7" placeholder="Masukan Jawaban Anda" name="jawaban7">
     </div>
     <div class="form-group">
-      <label  for="pwd">Pertanyaan 8:</label>
+      <label  for="pwd">Apakah artikel-artikel pada website tersebut menyajikan sumber yang terpercaya atau hanya opini?</label>
         <input type="text" class="form-control" id="jawaban8" placeholder="Masukan Jawaban Anda" name="jawaban8">
     </div>
     <div class="form-group">
-      <label  for="pwd">Pertanyaan 9:</label>
+      <label  for="pwd">Bagaimana pengalaman anda dengan news site (yang dimaksud) sebelumnya?</label>
         <input type="text" class="form-control" id="jawaban9" placeholder="Masukan Jawaban Anda" name="jawaban9">
     </div>
     <div class="form-group">
-      <label  for="pwd">Pertanyaan 10:</label>
+      <label  for="pwd">Apakah anda nyaman membaca artikel artikel pada news site tersebut?</label>
         <input type="text" class="form-control" id="jawaban10" placeholder="Masukan Jawaban Anda" name="jawaban10">
     </div>
     <div class="form-group">
-      <label  for="pwd">Nilai:</label>
-        <input type="text" class="form-control" id="nilai" placeholder="Masukan Nilai Tingkat Kepercayaan Anda Terhadap Newsite ini" name="nilai">
+      <label  for="pwd">Berapakah nilai tingkat kepercayaan anda terhadap news site tersebut? </label>
+        <input type="text" class="form-control" id="nilai" placeholder="Masukan Nilai Tingkat Kepercayaan Anda Terhadap Newsite ini antara 1 sampai 100" name="nilai">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-default">Submit</button>

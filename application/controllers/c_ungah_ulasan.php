@@ -67,6 +67,10 @@ class c_ungah_ulasan extends CI_Controller
 
 
 	}
+	public function keluar(){
+		$this->session->sess_destroy();
+		redirect('c_user');
+	}
 
 
 }

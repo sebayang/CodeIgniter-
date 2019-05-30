@@ -14,4 +14,17 @@ class m_jawaban extends CI_Model {
 	function insertJawaban($data){
 			$this->db->insert('jawaban',$data);
 	}
+	function getAllJawaban($where){
+			$this->db->select('* , id, nama_website, nilai, ');
+			$this->db->from('jawaban');
+			$this->db->where($where);
+			$query = $this->db->get();
+			return $query;
+	}
+
+	function deleteJawaban($where){
+			$this->db->where($where);
+			$this->db->delete('jawaban');
+	}
+
 }
