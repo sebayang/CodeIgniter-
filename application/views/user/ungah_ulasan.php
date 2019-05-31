@@ -123,11 +123,10 @@
               <?php
               foreach ($website as $wst):
               ?>
-              <option data-subtext="<?php echo $wst->nama_website?>" value="<?php echo $wst->nama_website?>"><?php echo $wst->nama_website?></option>
+              <option value="<?php echo $wst->nama_website?>"><?php echo $wst->nama_website?></option>
               <?php endforeach; ?>
             </select>
           </div>
-    </table>
     </div>
     <div class="form-group">
       <label  for="pwd">Bagaimana pendapat anda tentang design dari news site tersebut?</label>

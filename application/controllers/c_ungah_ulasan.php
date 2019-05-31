@@ -27,8 +27,8 @@ class c_ungah_ulasan extends CI_Controller
 	}
 
 	function formUlasan(){
-		$data['website'] = $this->m_website->getAllWebsite()->result();
-		//-------------------------------------------------
+		$data['website'] = $this->m_website->getAllWebsite();
+		//-------------------------------------------------;
 		$this->load->view('template/header');
 		$this->load->view('user/ungah_ulasan',$data);
 		$this->load->view('template/footer');

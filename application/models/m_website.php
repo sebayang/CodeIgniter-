@@ -12,19 +12,11 @@ class m_website extends CI_Model {
 	}
 
 
-	function getAllJawaban($where){
-			$this->db->select('* , id, nama_website, nilai, ');
-			$this->db->from('jawaban');
-			$this->db->where($where);
-			$query = $this->db->get();
-			return $query;
-	}
-
 	function getAllWebsite(){
 			$this->db->select('* ,nama_website, ');
 			$this->db->from('website');
 			$query = $this->db->get();
-			return $query;
+			return $query->result_array();
 	}
 
 }
