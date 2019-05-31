@@ -117,7 +117,17 @@
   <form class="form-horizontal" action="<?php echo base_url('c_ungah_ulasan/insert_jawaban'); ?>" method="post">
     <div class="form-group">
       <label for="email">Nama Website:</label>
-        <input type="text" class="form-control" id="nama_website" placeholder="contoh : www.liputan6.com" name="nama_website">
+          <div class="row-fluid">
+            <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="nim" required>
+              <option data-subtext="">Pilih Website</option>
+              <?php
+              foreach ($website as $wst):
+              ?>
+              <option data-subtext="<?php echo $wst->nama_website?>" value="<?php echo $wst->nama_website?>"><?php echo $wst->nama_website?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+    </table>
     </div>
     <div class="form-group">
       <label  for="pwd">Bagaimana pendapat anda tentang design dari news site tersebut?</label>
