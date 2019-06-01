@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Bulan Mei 2019 pada 07.56
+-- Waktu pembuatan: 01 Jun 2019 pada 16.06
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `jawaban` (
   `id` int(11) NOT NULL,
-  `id_post` int(11) NOT NULL,
+  `nama_website` varchar(25) NOT NULL,
   `username` varchar(30) NOT NULL,
   `jawaban1` text NOT NULL,
   `jawaban2` text NOT NULL,
@@ -42,8 +42,7 @@ CREATE TABLE `jawaban` (
   `jawaban8` text NOT NULL,
   `jawaban9` text NOT NULL,
   `jawaban10` text NOT NULL,
-  `jawaban11` text NOT NULL,
-  `jawaban12` int(3) NOT NULL
+  `nilai` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -54,7 +53,7 @@ CREATE TABLE `jawaban` (
 
 CREATE TABLE `komentar` (
   `id` int(11) DEFAULT NULL,
-  `id_post` int(11) NOT NULL,
+  `id_jawaban` int(11) NOT NULL,
   `id_username` varchar(30) NOT NULL,
   `komentar` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -102,9 +101,31 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `nama`, `email`, `type`) VALUES
+('123', '202cb962ac59075b964b07152d234b70', 'rio', 'ibrahim.sebayang@gmail.com', 2),
 ('admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin@admin.com', 1),
-('user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user', 'user@user.com', 1),
+('user', 'ee11cbb19052e40b07aac0ca060c23ee', 'Febrio Ibrahim S', 'ibrahim.sebayang@gmail.com', 2),
 ('user1', 'ee11cbb19052e40b07aac0ca060c23ee', 'user', 'user@user.com', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `website`
+--
+
+CREATE TABLE `website` (
+  `nama_website` varchar(25) NOT NULL,
+  `nilai` int(3) NOT NULL,
+  `total` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `website`
+--
+
+INSERT INTO `website` (`nama_website`, `nilai`, `total`, `jumlah`) VALUES
+('Kompas TV', 0, 0, 0),
+('Liputan6', 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -135,6 +156,12 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`username`);
 
 --
+-- Indeks untuk tabel `website`
+--
+ALTER TABLE `website`
+  ADD PRIMARY KEY (`nama_website`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -142,7 +169,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `jawaban`
 --
 ALTER TABLE `jawaban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT untuk tabel `penilaian`

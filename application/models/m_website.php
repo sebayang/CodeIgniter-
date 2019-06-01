@@ -19,4 +19,34 @@ class m_website extends CI_Model {
 			return $query;
 	}
 
+	function getValueWebsite($where){
+			$this->db->select('nilai, total, jumlah, ');
+			$this->db->from('website');
+			$this->db->where($where);
+			$query = $this->db->get();
+			return $query;
+	}
+
+	function insertHasil($data2,$where){
+		$this->db->where($where);
+		$this->db->update('website',$data2);
+
+	}
+
+	function getNilai($where){
+			$this->db->select('nilai, ');
+			$this->db->from('website');
+			$this->db->where($where);
+			$query = $this->db->get();
+			return $query;
+	}
+	function getJumlah($where){
+			$this->db->select('jumlah, ');
+			$this->db->from('website');
+			$this->db->where($where);
+			$query = $this->db->get();
+			return $query;
+	}
+
+
 }

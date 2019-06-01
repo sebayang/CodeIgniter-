@@ -118,12 +118,12 @@
     <div class="form-group">
       <label for="email">Nama Website:</label>
           <div class="row-fluid">
-            <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="nim" required>
+            <select class="form-control" data-show-subtext="true" data-live-search="true" name="nama_website" required>
               <option data-subtext="">Pilih Website</option>
               <?php
               foreach ($website as $wst):
               ?>
-              <option value="<?php echo $wst->nama_website?>"><?php echo $wst->nama_website?></option>
+              <option data-subtext="<?php echo $wst->nama_website?>" value="<?php echo $wst->nama_website?>"><?php echo $wst->nama_website?></option>
               <?php endforeach; ?>
             </select>
           </div>

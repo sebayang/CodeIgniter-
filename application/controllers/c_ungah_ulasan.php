@@ -64,9 +64,9 @@ class c_ungah_ulasan extends CI_Controller
 			'jawaban10'=> $jawaban10,
 			'nilai'=> $nilai
 		);
-		$this->m_jawaban->insertJawaban($data);
 
-		redirect('c_user');
+		$this->m_jawaban->insertJawaban($data);
+		redirect('c_ungah_ulasan');
 
 
 	}
