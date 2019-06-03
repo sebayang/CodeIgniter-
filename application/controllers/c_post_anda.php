@@ -1,32 +1,36 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class c_post_anda extends CI_Controller {
-	public function __construct() {
-        parent::__construct();
-        $this->load->model('m_jawaban');
-    }
+class c_post_anda extends CI_Controller
+{
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('m_website');
+		$this->load->model('m_jawaban');
+	}
 
-    function index() {
-		    if($this->session->has_userdata('username')){
-				  if($this->session->userdata('type')==1){
-  					redirect('c_user/homeAdmin');
-  				}elseif($this->session->userdata('type')==2){
-  					redirect('c_post_anda/postAnda');
-  				}
-  		}else{
+	function index()
+	{
+		if ($this->session->has_userdata('username')) {
+			if ($this->session->userdata('type') == 1) {
+				redirect('c_user/homeAdmin');
+			} elseif ($this->session->userdata('type') == 2) {
+				redirect('c_post_anda/postAnda');
+			}
+		} else {
 
-        $this->load->view('template/header'); // default template
-    		$this->load->view('Login/LoginUser');
-  		}
-
+			$this->load->view('template/header'); // default template
+			$this->load->view('Login/LoginUser');
 		}
+	}
 
-	public function postAnda(){
+	public function postAnda()
+	{
 		$username = $this->session->userdata('username');
 
 		$where = array(
-			'username'=>$username
+			'username' => $username
 		);
 		$data['jawaban'] = $this->m_jawaban->getAllJawaban($where)->result();
 		//-------------------------------------------------------------
@@ -35,19 +39,28 @@ class c_post_anda extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	public function edit_jawaban($id){
+
+		$data['website'] = $this->m_website->getAllWebsite()->result();
+		$data['jawaban'] = $this->m_jawaban->getDataJawaban($id);
+
+		$this->load->view('template/header'); // default template
+		$this->load->view('user/edit_post_anda', $data);
+		$this->load->view('template/footer');
+	}
+
 	public function hapus_jawaban($id){
 		// code...
-		$where = array (
+		$where = array(
 			'id' => $id
 		);
 		$this->m_jawaban->deleteJawaban($where);
 		redirect(base_url('c_post_anda'));
 	}
-	public function keluar(){
+
+	public function keluar()
+	{
 		$this->session->sess_destroy();
 		redirect('c_user');
 	}
-
-
-
 }

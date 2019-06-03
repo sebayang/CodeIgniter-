@@ -88,7 +88,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="<?php echo base_url('c_post_anda');?>"><i class="fa fa-circle-o"></i> Post Anda</a></li>
-            <li><a href="<?php echo base_url('c_post_anda');?>"><i class="fa fa-circle-o"></i>  Hasil Penilaian </a></li>
+            <li><a href="<?php echo base_url('c_penilaian/penilaian');?>"><i class="fa fa-circle-o"></i>  Hasil Penilaian </a></li>
             <li><a href="<?php echo base_url('c_ungah_ulasan');?>"><i class="fa fa-circle-o"></i> Ungah Ulasan </a></li>
           </ul>
         </li>
@@ -123,6 +123,7 @@
                   <th>ID Jawaban</th>
                   <th>Nama Website</th>
                   <th>Nilai</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -136,6 +137,7 @@
                   <td><?php echo $jwb->nama_website;?></td>
                   <td><?php echo $jwb->nilai;?></td>
                   <td>
+                  <a href="<?php echo base_url('c_post_anda/edit_jawaban/'.$jwb->id);?>" class="btn btn-primary" ><i class="fa fa-edit"></i></a>
                     <a href="<?php echo base_url('c_post_anda/hapus_jawaban/'.$jwb->id);?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data?')"><i class="fa fa-trash"></i></a>
                   </td>
                 </tr>

@@ -88,7 +88,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="<?php echo base_url('c_post_anda');?>"><i class="fa fa-circle-o"></i> Post Anda</a></li>
-            <li><a href="<?php echo base_url('c_post_anda');?>"><i class="fa fa-circle-o"></i>  Hasil Penilaian </a></li>
+            <li><a href="<?php echo base_url('c_penilaian/penilaian');?>"><i class="fa fa-circle-o"></i>  Hasil Penilaian </a></li>
             <li><a href="<?php echo base_url('c_ungah_ulasan');?>"><i class="fa fa-circle-o"></i> Ungah Ulasan </a></li>
           </ul>
         </li>

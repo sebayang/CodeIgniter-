@@ -13,7 +13,7 @@ class m_website extends CI_Model {
 
 
 	function getAllWebsite(){
-			$this->db->select('nama_website, ');
+			$this->db->select('*');
 			$this->db->from('website');
 			$query = $this->db->get();
 			return $query;

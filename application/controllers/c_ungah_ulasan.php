@@ -37,6 +37,10 @@ class c_ungah_ulasan extends CI_Controller
 	function insert_jawaban(){
 		$nama_website = $this->input->post('nama_website');
 		$username = $this->session->userdata('username');
+
+		//Get id jawaban jika ditemukan sudah merieview website yang sama oleh username yang sama
+		$id_jawaban = $this->m_jawaban->checkJawabanUser($username,$nama_website);
+		
 		$jawaban1 = $this->input->post('jawaban1');
 		$jawaban2 = $this->input->post('jawaban2');
 		$jawaban3 = $this->input->post('jawaban3');
@@ -62,11 +66,47 @@ class c_ungah_ulasan extends CI_Controller
 			'jawaban8'=> $jawaban8,
 			'jawaban9'=> $jawaban9,
 			'jawaban10'=> $jawaban10,
-			'nilai'=> $nilai
+			'nilai'=> $nilai,
+			'timestamp' => date('Y-m-d H:i:s')
 		);
 
-		$this->m_jawaban->insertJawaban($data);
-		redirect('c_ungah_ulasan');
+		//Jika user belum pernah merieview website ini, maka akan melakukan proses tambah data
+		//Jika user sdh pernah mereview website ini, maka akan melakukan proses update data
+		if(!empty($id_jawaban)){			
+			$this->m_jawaban->updateJawaban($data,$id_jawaban);
+			$this->session->set_flashdata('msg', 'Berhasil update review.');
+		}else{			
+			$this->m_jawaban->insertJawaban($data);
+			$this->session->set_flashdata('msg', 'Berhasil menambahkan review.');
+		}
+
+
+		//Mengambil total row = Jumlah user yang memberikan ulasan
+		$this->db->where('nama_website',$nama_website);
+		$jumlah = $this->db->get('jawaban')->num_rows();
+
+		//Mengambil sum nilai dari seluruh user yang memberikan ulasan
+		$this->db->where('nama_website',$nama_website);
+		$this->db->select('SUM(nilai) AS nilai', FALSE);
+		$total = $this->db->get('jawaban')->row()->nilai;
+
+		//Membagi var total / var jumlah
+		$nilai = $total / $jumlah;
+
+		//Memasukan variable untuk update pada tabel website
+		$data = array(
+			'nilai' => $nilai,
+			'total' => $total,
+			'jumlah' => $jumlah
+		);
+
+		$this->db->where('nama_website',$nama_website);
+		$this->db->update('website',$data);
+
+
+
+
+		redirect('c_ungah_ulasan/formUlasan');
 
 
 	}
