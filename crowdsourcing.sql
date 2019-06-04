@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2019 at 07:46 PM
+-- Generation Time: Jun 04, 2019 at 09:06 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -43,8 +43,8 @@ CREATE TABLE `jawaban` (
   `jawaban9` text NOT NULL,
   `jawaban10` text NOT NULL,
   `nilai` int(3) NOT NULL,
-  `like` int(11) DEFAULT NULL,
-  `dislike` int(11) DEFAULT NULL,
+  `like` int(11) NOT NULL DEFAULT '0',
+  `dislike` int(11) NOT NULL DEFAULT '0',
   `timestamp` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -53,9 +53,8 @@ CREATE TABLE `jawaban` (
 --
 
 INSERT INTO `jawaban` (`id`, `nama_website`, `username`, `jawaban1`, `jawaban2`, `jawaban3`, `jawaban4`, `jawaban5`, `jawaban6`, `jawaban7`, `jawaban8`, `jawaban9`, `jawaban10`, `nilai`, `like`, `dislike`, `timestamp`) VALUES
-(53, 'Kompas TV', '123', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan', 'sepuluh', 90, 0, 1, '2019-06-03 17:05:53'),
-(56, 'Liputan6', '123', 'bagus', 'cukup baik', '', '', '', '', '', '', 'baik', 'ya', 50, 1, 0, '2019-06-02 10:43:57'),
-(57, 'Kompas TV', 'user', 'bagus', '', '', '', '', '', '', '', 'baik', 'ya', 65, 1, 0, '2019-06-02 10:43:57');
+(62, 'liputan6', 'user', 'satu', '', '', '', '', '', '', '', '', 'sepuluh', 79, 1, 0, '2019-06-04 18:31:49'),
+(63, 'merdeka', 'user', '', 'dua', '', '', '', '', '', '', '', '', 99, 0, 0, '2019-06-04 18:43:53');
 
 -- --------------------------------------------------------
 
@@ -70,23 +69,6 @@ CREATE TABLE `komentar` (
   `komentar` text NOT NULL,
   `timestamp` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `komentar`
---
-
-INSERT INTO `komentar` (`id`, `id_jawaban`, `username`, `komentar`, `timestamp`) VALUES
-(1, 57, '123', 'Hallo Andy', '2019-06-03 16:13:29'),
-(2, 57, 'user', 'Haha bagus kok', '2019-06-03 16:13:29'),
-(3, 57, 'user', 'Cukup bagus kok sangat keren malahan, ini untuk ditest ya.', '2019-06-03 16:31:38'),
-(4, 56, 'user', 'Ini komentar pertama kalinya aku loh', '2019-06-03 16:32:39'),
-(5, 56, 'user', 'Goodlah', '2019-06-03 16:32:53'),
-(6, 56, 'user', 'Ya tester lagi ya say', '2019-06-03 16:38:06'),
-(7, 57, 'user', 'good ya', '2019-06-03 16:46:55'),
-(8, 57, 'user', 'Ya cukup baiklah', '2019-06-03 16:48:29'),
-(9, 57, '123', 'Iya dong harus itu. Lorem ipsum dollar lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar  lorem ipsum dollar ', '2019-06-03 16:49:35'),
-(10, 56, '123', 'bagus kok', '2019-06-03 16:51:18'),
-(11, 53, '123', 'Hallo gan', '2019-06-03 16:51:52');
 
 -- --------------------------------------------------------
 
@@ -108,9 +90,7 @@ CREATE TABLE `thumbs` (
 --
 
 INSERT INTO `thumbs` (`id_thumbs`, `id_jawaban`, `username`, `nama_website`, `is_like`, `timestamp`) VALUES
-(23, 57, '123', 'Kompas TV', 1, '2019-06-02 16:06:44'),
-(25, 53, '123', 'Kompas TV', 0, '2019-06-02 17:29:46'),
-(35, 56, '123', 'Liputan6', 1, '2019-06-03 17:09:59');
+(38, 62, '123', 'liputan6', 1, '2019-06-04 18:45:38');
 
 -- --------------------------------------------------------
 
@@ -133,6 +113,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`username`, `password`, `nama`, `email`, `type`) VALUES
 ('123', 'e10adc3949ba59abbe56e057f20f883e', 'rio', 'ibrahim.sebayang@gmail.com', 2),
 ('admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 'admin@admin.com', 1),
+('hallo', 'e10adc3949ba59abbe56e057f20f883e', 'Gyuky', 'gyuky@gmail.com', 2),
 ('user', 'e10adc3949ba59abbe56e057f20f883e', 'Febrio Ibrahim S', 'ibrahim.sebayang@gmail.com', 2),
 ('user1', 'e10adc3949ba59abbe56e057f20f883e', 'user', 'user@user.com', 2);
 
@@ -154,8 +135,9 @@ CREATE TABLE `website` (
 --
 
 INSERT INTO `website` (`nama_website`, `nilai`, `total`, `jumlah`) VALUES
-('Kompas TV', 78, 155, 2),
-('Liputan6', 50, 50, 1);
+('kompasiana', 0, 0, 0),
+('liputan6', 79, 79, 1),
+('merdeka', 99, 99, 1);
 
 --
 -- Indexes for dumped tables
@@ -199,17 +181,17 @@ ALTER TABLE `website`
 -- AUTO_INCREMENT for table `jawaban`
 --
 ALTER TABLE `jawaban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `thumbs`
 --
 ALTER TABLE `thumbs`
-  MODIFY `id_thumbs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;COMMIT;
+  MODIFY `id_thumbs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

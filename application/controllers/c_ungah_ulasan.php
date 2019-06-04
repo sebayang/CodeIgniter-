@@ -85,17 +85,25 @@ class c_ungah_ulasan extends CI_Controller
 			$this->session->set_flashdata('msg', 'Berhasil menambahkan review.');
 		}
 
+		$this->set_nilai_website($nama_website);
 
-		//Mengambil total row = Jumlah user yang memberikan ulasan
-		$this->db->where('nama_website', $nama_website);
-		$jumlah = $this->db->get('jawaban')->num_rows();
+		redirect('c_ungah_ulasan/formUlasan');
+	}
 
-		//Mengambil sum nilai dari seluruh user yang memberikan ulasan
-		$this->db->where('nama_website', $nama_website);
+
+	function set_nilai_website($nama_website){
+
+
+        //Mengambil total row = jumlah user yang memberikan ulasan dan likenya lebih besar atau sama
+		$this->db->where('nama_website',$nama_website)->where("(like > dislike OR like = dislike)");
+        $jumlah = $this->db->get('jawaban')->num_rows();  
+        
+		//Mengambil sum nilai dari seluruh user yang memberikan ulasan dan likenya lebih besar atau sama
+		$this->db->where('nama_website',$nama_website)->where("(like > dislike OR like = dislike)");
 		$this->db->select('SUM(nilai) AS nilai', FALSE);
-		$total = $this->db->get('jawaban')->row()->nilai;
-
-		//Membagi var total / var jumlah
+        $total = $this->db->get('jawaban')->row()->nilai;
+        
+        //Membagi var total / var jumlah
 		$nilai = $total / $jumlah;
 
 		//Memasukan variable untuk update pada tabel website
@@ -106,13 +114,10 @@ class c_ungah_ulasan extends CI_Controller
 		);
 
 		$this->db->where('nama_website', $nama_website);
-		$this->db->update('website', $data);
-
-
-
-
-		redirect('c_ungah_ulasan/formUlasan');
+		return $this->db->update('website', $data);
 	}
+	
+
 	public function keluar()
 	{
 		$this->session->sess_destroy();

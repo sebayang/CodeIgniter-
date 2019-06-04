@@ -75,6 +75,7 @@ class c_penilaian extends CI_Controller
         $result = $this->m_penilaian->thumbs_up($idJawaban, $username, $nama_website);
         if ($result) {
             $this->counter_like($idJawaban);
+            $this->set_nilai_website($nama_website);
             redirect(base_url('c_penilaian/detail_penilaian/' . $postByUsername . '/' . $nama_website));
         } else {
             redirect(base_url('c_penilaian/detail_penilaian/' . $postByUsername . '/' . $nama_website));
@@ -90,10 +91,36 @@ class c_penilaian extends CI_Controller
         $result = $this->m_penilaian->thumbs_down($idJawaban, $username, $nama_website);
         if ($result) {
             $this->counter_like($idJawaban);
+            $this->set_nilai_website($nama_website);
             redirect(base_url('c_penilaian/detail_penilaian/' . $postByUsername . '/' . $nama_website));
         } else {
             redirect(base_url('c_penilaian/detail_penilaian/' . $postByUsername . '/' . $nama_website));
         }
+    }
+
+    function set_nilai_website($nama_website){
+
+        //Mengambil total row = jumlah user yang memberikan ulasan dan likenya lebih besar atau sama
+        $this->db->where('nama_website',$nama_website)->where("(like > dislike OR like = dislike)");
+        $jumlah = $this->db->get('jawaban')->num_rows();     
+        
+		//Mengambil sum nilai dari seluruh user yang memberikan ulasan dan likenya lebih besar atau sama
+		$this->db->where('nama_website',$nama_website)->where("(like > dislike OR like = dislike)");
+		$this->db->select('SUM(nilai) AS nilai', FALSE);
+        $total = $this->db->get('jawaban')->row()->nilai;
+        
+        //Membagi var total / var jumlah
+		$nilai = $total / $jumlah;
+
+		//Memasukan variable untuk update pada tabel website
+		$data = array(
+			'nilai' => $nilai,
+			'total' => $total,
+			'jumlah' => $jumlah
+		);
+
+		$this->db->where('nama_website', $nama_website);
+		return $this->db->update('website', $data);
     }
 
 
