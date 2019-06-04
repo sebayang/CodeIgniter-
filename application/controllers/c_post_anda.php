@@ -27,6 +27,9 @@ class c_post_anda extends CI_Controller
 
 	public function postAnda()
 	{
+		//setup session menu
+		$this->session->set_userdata('menu','postanda');
+		
 		$username = $this->session->userdata('username');
 
 		$where = array(

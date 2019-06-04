@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class c_user extends CI_Controller {
 	public function __construct() {
         parent::__construct();
-        $this->load->model('m_user');
+				$this->load->model('m_user');
+				$this->load->model('m_website');
     }
 
     function index() {
@@ -92,11 +93,31 @@ class c_user extends CI_Controller {
 			}
 
 	}
+
 	public function homeUser(){
+
+		redirect(base_url('c_post_anda/postAnda'));
+		//setup session menu
+		$this->session->set_userdata('menu','home');
+
 		$this->load->view('template/header'); // default template
 		$this->load->view('user/home_dashboard');
 		$this->load->view('template/footer');
 	}
+
+	public function homeAdmin(){
+		//setup session menu
+		$this->session->set_userdata('menu','home');
+		$data['website'] = $this->m_website->getAllWebsite()->result();
+
+		$this->load->view('template/header'); // default template
+		$this->load->view('admin/home_dashboard',$data);
+		$this->load->view('template/footer');
+	}
+
+
+
+
 	public function keluar(){
 		$this->session->sess_destroy();
 		redirect('c_user');

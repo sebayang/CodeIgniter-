@@ -51,6 +51,7 @@
 <!-- Full Calendar -->
 <script src="<?php echo base_url('assets/Admin/bower_components/fullcalendar/dist/fullcalendar.min.js')?>"></script>
 
+<script src="<?= base_url('assets/sweetalert.min.js'); ?>"></script>
 
 <script type="text/javascript">
   $(document).ready(function() {

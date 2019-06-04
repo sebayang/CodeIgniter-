@@ -18,6 +18,7 @@ class m_website extends CI_Model {
 			$query = $this->db->get();
 			return $query;
 	}
+	
 
 	function getValueWebsite($where){
 			$this->db->select('nilai, total, jumlah, ');
@@ -25,6 +26,18 @@ class m_website extends CI_Model {
 			$this->db->where($where);
 			$query = $this->db->get();
 			return $query;
+	}
+
+	function add_website($website){
+		$this->db->where('nama_website',$website);
+		$count = $this->db->get('website')->num_rows();
+
+		if(empty($count)){
+			$data = array('nama_website' => $website);
+			return $this->db->insert('website',$data);
+		}else{
+			return false;
+		}
 	}
 
 	function insertHasil($data2,$where){

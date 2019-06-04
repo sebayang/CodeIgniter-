@@ -29,6 +29,9 @@ class c_penilaian extends CI_Controller
 
     function penilaian()
     {
+        //setup session menu
+        $this->session->set_userdata('menu','penilaian');
+        
         $data['website'] = $this->m_website->getAllWebsite()->result();
 
         $this->load->view('template/header'); // default template
