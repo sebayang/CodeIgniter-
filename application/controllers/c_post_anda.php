@@ -93,7 +93,11 @@ class c_post_anda extends CI_Controller
 		$total = $this->db->get('jawaban')->row()->nilai;
 
 		//Membagi var total / var jumlah
-		$nilai = $total / $jumlah;
+        if (empty($jumlah) || empty($total)) {
+            $nilai = 0;
+        } else {
+            $nilai = $total / $jumlah;
+        }
 
 		//Memasukan variable untuk update pada tabel website
 		$data = array(

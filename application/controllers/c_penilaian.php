@@ -30,8 +30,8 @@ class c_penilaian extends CI_Controller
     function penilaian()
     {
         //setup session menu
-        $this->session->set_userdata('menu','penilaian');
-        
+        $this->session->set_userdata('menu', 'penilaian');
+
         $data['website'] = $this->m_website->getAllWebsite()->result();
 
         $this->load->view('template/header'); // default template
@@ -98,29 +98,35 @@ class c_penilaian extends CI_Controller
         }
     }
 
-    function set_nilai_website($nama_website){
+    function set_nilai_website($nama_website)
+    {
 
         //Mengambil total row = jumlah user yang memberikan ulasan dan likenya lebih besar atau sama
-        $this->db->where('nama_website',$nama_website)->where("(like > dislike OR like = dislike)");
-        $jumlah = $this->db->get('jawaban')->num_rows();     
-        
-		//Mengambil sum nilai dari seluruh user yang memberikan ulasan dan likenya lebih besar atau sama
-		$this->db->where('nama_website',$nama_website)->where("(like > dislike OR like = dislike)");
-		$this->db->select('SUM(nilai) AS nilai', FALSE);
+        $this->db->where('nama_website', $nama_website)->where("(like > dislike OR like = dislike)");
+        $jumlah = $this->db->get('jawaban')->num_rows();
+
+        //Mengambil sum nilai dari seluruh user yang memberikan ulasan dan likenya lebih besar atau sama
+        $this->db->where('nama_website', $nama_website)->where("(like > dislike OR like = dislike)");
+        $this->db->select('SUM(nilai) AS nilai', FALSE);
         $total = $this->db->get('jawaban')->row()->nilai;
-        
+
         //Membagi var total / var jumlah
-		$nilai = $total / $jumlah;
+        if (empty($jumlah) || empty($total)) {
+            $nilai = 0;
+        } else {
+            $nilai = $total / $jumlah;
+        }
 
-		//Memasukan variable untuk update pada tabel website
-		$data = array(
-			'nilai' => $nilai,
-			'total' => $total,
-			'jumlah' => $jumlah
-		);
 
-		$this->db->where('nama_website', $nama_website);
-		return $this->db->update('website', $data);
+        //Memasukan variable untuk update pada tabel website
+        $data = array(
+            'nilai' => $nilai,
+            'total' => $total,
+            'jumlah' => $jumlah
+        );
+
+        $this->db->where('nama_website', $nama_website);
+        return $this->db->update('website', $data);
     }
 
 
@@ -150,15 +156,14 @@ class c_penilaian extends CI_Controller
         $idJawaban = $this->input->post('id');
         $comment = $this->input->post('comment');
 
-        $result = $this->m_komentar->insert($idJawaban,$comment);
+        $result = $this->m_komentar->insert($idJawaban, $comment);
 
-        $this->db->where('id',$idJawaban);
+        $this->db->where('id', $idJawaban);
         $r = $this->db->get('jawaban')->row();
 
         $link_user = $r->username;
         $link_nama_website = $r->nama_website;
 
-        redirect(base_url('c_penilaian/detail_penilaian/'.$link_user.'/'.$link_nama_website));
-
+        redirect(base_url('c_penilaian/detail_penilaian/' . $link_user . '/' . $link_nama_website));
     }
 }
